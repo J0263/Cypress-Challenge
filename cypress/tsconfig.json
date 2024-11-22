@@ -1,8 +1,18 @@
 {
+    "extends": "../tsconfig.json",
     "compilerOptions": {
-      "target": "ES6",
-      "lib": ["dom", "es2015"],
-      "types": ["cypress"]
+      "target": "ES2020",
+      "lib": ["ES2020", "DOM"],
+      "types": ["cypress", "node"],
+      "outDir": "./dist",  // Output files go here
+      "rootDir": "../",    // Set root directory to include both client and cypress
+      "isolatedModules": false,
+      "composite": true,
+      "jsx": "react-jsx",
+      "strict": true
     },
-    "include": ["**/*.ts", "**/*.tsx", "cypress/**/*"]
+    "include": [
+      "../client/src/**/*", // Include client source files
+      "./**/*"              // Include Cypress files
+    ]
   }
