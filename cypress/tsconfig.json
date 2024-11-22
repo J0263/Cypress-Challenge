@@ -1,18 +1,19 @@
 {
-    "extends": "../tsconfig.json",
+    "extends": "../tsconfig.json", // Extends the base tsconfig.json if available
     "compilerOptions": {
-      "target": "ES2020",
-      "lib": ["ES2020", "DOM"],
-      "types": ["cypress", "node"],
-      "outDir": "./dist",  // Output files go here
-      "rootDir": "../",    // Set root directory to include both client and cypress
-      "isolatedModules": false,
-      "composite": true,
-      "jsx": "react-jsx",
-      "strict": true
+      "types": ["cypress"],        // Include Cypress types
+      "isolatedModules": false,    // Set to false for test files
+      "noEmit": true               // Prevent emitting compiled files
     },
     "include": [
-      "../client/src/**/*", // Include client source files
-      "./**/*"              // Include Cypress files
+      "../node_modules/cypress",  // Include Cypress node_modules
+      "../cypress/**/*.ts",       // Include Cypress TypeScript files
+      "../cypress/**/*.tsx",      // Include component tests
+      "../cypress/**/*.js",       // Include JavaScript tests (if any)
+      "../cypress/**/*.jsx"       // Include JSX tests (if any)
+    ],
+    "exclude": [
+      "../node_modules",          // Exclude node_modules (already included above)
+      "../dist"                   // Exclude built files
     ]
   }

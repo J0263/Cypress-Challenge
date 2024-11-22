@@ -1,11 +1,12 @@
 /// <reference types="cypress" />
+import React from 'react';
 import { mount } from 'cypress/react';
 import Quiz from '../../client/src/components/Quiz';
 
 // Mock dependencies
 import * as questionApi from '../../client/src/services/questionApi';
 
-describe('Quiz Component', () => {
+describe('Quiz Component Tests', () => {
   const mockQuestions = [
     {
       question: 'What is React?',
@@ -28,70 +29,67 @@ describe('Quiz Component', () => {
   ];
 
   beforeEach(() => {
-    // Mock the API call
+    // Stub the API call to return mock data
     cy.stub(questionApi, 'getQuestions').resolves(mockQuestions);
   });
 
-  it('should render the start button initially', () => {
+  it('renders the Start Quiz button', () => {
     mount(<Quiz />);
     cy.contains('button', 'Start Quiz').should('be.visible');
   });
 
-  it('should start the quiz and display the first question', () => {
+  it('starts the quiz and displays the first question', () => {
     mount(<Quiz />);
     cy.contains('button', 'Start Quiz').click();
 
-    // Verify first question is displayed
+    // Check the first question is displayed
     cy.contains(mockQuestions[0].question).should('be.visible');
 
-    // Verify answers are displayed
+    // Check the answers are displayed
     mockQuestions[0].answers.forEach((answer, index) => {
       cy.contains('button', `${index + 1}`).should('be.visible');
       cy.contains(answer.text).should('be.visible');
     });
   });
 
-  it('should move to the next question after answering correctly', () => {
+  it('displays the next question after answering', () => {
     mount(<Quiz />);
     cy.contains('button', 'Start Quiz').click();
 
-    // Click the correct answer for the first question
-    const correctAnswerIndex = mockQuestions[0].answers.findIndex((a) => a.isCorrect);
-    cy.contains('button', `${correctAnswerIndex + 1}`).click();
+    // Answer the first question
+    cy.contains('button', '1').click();
 
-    // Verify second question is displayed
+    // Verify the second question is displayed
     cy.contains(mockQuestions[1].question).should('be.visible');
   });
 
-  it('should display the score and completion message when the quiz ends', () => {
+  it('completes the quiz and displays the score', () => {
     mount(<Quiz />);
     cy.contains('button', 'Start Quiz').click();
 
     // Answer all questions
-    mockQuestions.forEach((question) => {
-      const correctAnswerIndex = question.answers.findIndex((a) => a.isCorrect);
-      cy.contains('button', `${correctAnswerIndex + 1}`).click();
+    mockQuestions.forEach(() => {
+      cy.contains('button', '1').click(); // Click the first answer for each question
     });
 
-    // Verify the quiz is completed
+    // Verify the quiz completion message and score
     cy.contains('Quiz Completed').should('be.visible');
     cy.contains(`Your score: ${mockQuestions.length}/${mockQuestions.length}`).should('be.visible');
   });
 
-  it('should restart the quiz when "Take New Quiz" is clicked', () => {
+  it('allows restarting the quiz after completion', () => {
     mount(<Quiz />);
     cy.contains('button', 'Start Quiz').click();
 
     // Complete the quiz
-    mockQuestions.forEach((question) => {
-      const correctAnswerIndex = question.answers.findIndex((a) => a.isCorrect);
-      cy.contains('button', `${correctAnswerIndex + 1}`).click();
+    mockQuestions.forEach(() => {
+      cy.contains('button', '1').click();
     });
 
     // Restart the quiz
     cy.contains('button', 'Take New Quiz').click();
 
-    // Verify the start button is displayed again
+    // Verify the quiz restarts with the Start Quiz button visible again
     cy.contains('button', 'Start Quiz').should('be.visible');
   });
 });

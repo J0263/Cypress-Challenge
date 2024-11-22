@@ -2,9 +2,9 @@ import { defineConfig } from 'cypress';
 
 export default defineConfig({
   e2e: {
+    baseUrl: 'http://localhost:3001', // Replace with your app's actual URL
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      // Implement node event listeners if needed
     },
-    baseUrl: 'http://localhost:3000', // Replace with your app's base URL
   },
 });

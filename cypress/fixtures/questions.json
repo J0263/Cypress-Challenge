@@ -1,8 +1,38 @@
 [
     {
-      "id": 1,
-      "question": "What is the capital of France?",
-      "options": ["Paris", "Berlin", "Madrid", "Rome"],
-      "answer": "Paris"
+      "question": "What is React?",
+      "answers": [
+        { "text": "A JavaScript library", "isCorrect": true },
+        { "text": "A CSS framework", "isCorrect": false },
+        { "text": "A database", "isCorrect": false },
+        { "text": "A package manager", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "What is JSX?",
+      "answers": [
+        { "text": "JavaScript XML", "isCorrect": true },
+        { "text": "Java Syntax", "isCorrect": false },
+        { "text": "JSON-like Syntax", "isCorrect": false },
+        { "text": "None of the above", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "Which company developed React?",
+      "answers": [
+        { "text": "Google", "isCorrect": false },
+        { "text": "Facebook", "isCorrect": true },
+        { "text": "Microsoft", "isCorrect": false },
+        { "text": "Amazon", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "What is the purpose of a React component?",
+      "answers": [
+        { "text": "To define a reusable piece of UI", "isCorrect": true },
+        { "text": "To manage database operations", "isCorrect": false },
+        { "text": "To optimize CSS styles", "isCorrect": false },
+        { "text": "To compile JavaScript", "isCorrect": false }
+      ]
     }
   ]
