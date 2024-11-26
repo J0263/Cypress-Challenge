@@ -10,6 +10,7 @@
 - [How to Run Tests](#how-to-run-tests)
 - [Mock Data](#mock-data)
 - [Known Issues](#known-issues)
+- [Walkthrough] (#walkthrough)
 
 ---
 
@@ -152,3 +153,6 @@ The `questions.json` file contains predefined questions and answers for testing.
 
 - The "Take New Quiz" button occasionally requires additional time for the DOM to update. A `cy.wait()` command has been added to handle this.
 - Mock data must match the structure expected by the application for tests to pass.
+
+##Walkthrough
+Walkthroug video can be found on https://drive.google.com/file/d/1efrJrmyw9ohuNIXHhar-4-nIlmNctt4U/view?usp=sharing
