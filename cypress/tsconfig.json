@@ -3,7 +3,7 @@
     "compilerOptions": {
       "types": ["cypress"],        // Include Cypress types
       "isolatedModules": false,    // Set to false for test files
-      "noEmit": true               // Prevent emitting compiled files
+      "noEmit": true              // Prevent emitting compiled files
     },
     "include": [
       "../node_modules/cypress",  // Include Cypress node_modules

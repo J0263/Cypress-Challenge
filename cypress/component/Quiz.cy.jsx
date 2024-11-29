@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 import React from 'react';
 import { mount } from 'cypress/react';
-import Quiz from '../../client/src/components/Quiz';
+import Quiz from '../../client/src/components/Quiz.tsx';
 
 // Mock dependencies
 import * as questionApi from '../../client/src/services/questionApi';
